@@ -121,7 +121,6 @@ const AdminNav = ({ toggle, setToggle }) => {
                 id="dropdown-flag"
                 href="#"
                 data-bs-toggle="dropdown"
-                aria-haspopup="true"
                 aria-expanded="false"
               >
                 <i className="flag-icon flag-icon-us" />
@@ -554,7 +553,6 @@ const AdminNav = ({ toggle, setToggle }) => {
                 id="dropdown-user"
                 href="#"
                 data-bs-toggle="dropdown"
-                aria-haspopup="true"
                 aria-expanded={showProfile}
               >
                 <div className="user-nav d-sm-flex d-none">

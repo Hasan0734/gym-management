@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Calendar,
   CheckSquare,
@@ -15,11 +15,22 @@ import {
 const AdminSidebar = ({ toggle, setToggle }) => {
   const [subOpen, setSubOpen] = useState({ invoice: false });
 
+  useEffect(() => {
+    // const closeSidebar = (e) => {
+    //   console.log(e)
+    //   if (e.path[1].tagName !== "shape") {
+    //     setToggle(false);
+    //   }
+    // };
+    // document.body.addEventListener("click", closeSidebar);
+    // return () => document.body.removeEventListener("click", closeSidebar);
+  }, []);
   const customStyle = {
     overflow: "hidden",
     transition: "all 0.3s",
     height: `${subOpen.invoice ? "212px" : "43px"}`,
   };
+
   return (
     <div
       className="main-menu menu-fixed menu-light menu-accordion menu-shadow"
