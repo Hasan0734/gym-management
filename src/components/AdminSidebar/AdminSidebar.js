@@ -1,16 +1,7 @@
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import {
-  Calendar,
-  CheckSquare,
-  Circle,
-  Disc,
-  FileText,
-  Grid,
-  Home,
-  Mail,
-  MessageSquare,
-  X
-} from "react-feather";
+import { Disc, X } from "react-feather";
+import { menuItem } from "./sideMenu";
 
 const AdminSidebar = ({ toggle, setToggle }) => {
   const [subOpen, setSubOpen] = useState({ invoice: false });
@@ -25,6 +16,9 @@ const AdminSidebar = ({ toggle, setToggle }) => {
     // document.body.addEventListener("click", closeSidebar);
     // return () => document.body.removeEventListener("click", closeSidebar);
   }, []);
+
+  const {pathname} = useRouter();
+  
   const customStyle = {
     overflow: "hidden",
     transition: "all 0.3s",
@@ -147,165 +141,53 @@ const AdminSidebar = ({ toggle, setToggle }) => {
           id="main-menu-navigation"
           data-menu="menu-navigation"
         >
-          <li className=" nav-item">
-            <a className="d-flex align-items-center" href="index.html">
-              <Home />
-              <span className="menu-title text-truncate" data-i18n="Dashboards">
-                Dashboards
-              </span>
-              <span className="badge badge-light-warning rounded-pill ms-auto me-1">
-                2
-              </span>
-            </a>
-            <ul className="menu-content">
-              <li>
-                <a
-                  className="d-flex align-items-center"
-                  href="dashboard-analytics.html"
-                >
-                  <i data-feather="circle" />
-                  <span
-                    className="menu-item text-truncate"
-                    data-i18n="Analytics"
-                  >
-                    Analytics
-                  </span>
-                </a>
-              </li>
-              <li className="active">
-                <a
-                  className="d-flex align-items-center"
-                  href="dashboard-ecommerce.html"
-                >
-                  <Circle />
-                  <span
-                    className="menu-item text-truncate"
-                    data-i18n="eCommerce"
-                  >
-                    eCommerce
-                  </span>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li className=" navigation-header">
-            <span data-i18n="Apps & Pages">Apps &amp; Pages</span>
-            {/* <MoreHorizontal/> */}
-          </li>
-          <li className=" nav-item">
-            <a className="d-flex align-items-center" href="app-email.html">
-              <Mail />
-              <span className="menu-title text-truncate" data-i18n="Email">
-                Email
-              </span>
-            </a>
-          </li>
-          <li className="active nav-item">
-            <a className="d-flex align-items-center" href="app-chat.html">
-              <MessageSquare />
-              <span className="menu-title text-truncate" data-i18n="Chat">
-                Chat
-              </span>
-            </a>
-          </li>
-          <li className=" nav-item">
-            <a className="d-flex align-items-center" href="app-todo.html">
-              <CheckSquare />
-              <span className="menu-title text-truncate" data-i18n="Todo">
-                Todo
-              </span>
-            </a>
-          </li>
-          <li className=" nav-item">
-            <a className="d-flex align-items-center" href="app-calendar.html">
-              <Calendar />
-              <span className="menu-title text-truncate" data-i18n="Calendar">
-                Calendar
-              </span>
-            </a>
-          </li>
-          <li className=" nav-item ">
-            <a className="d-flex align-items-center" href="app-kanban.html">
-              <Grid />
-              <span className="menu-title text-truncate" data-i18n="Kanban">
-                Kanban
-              </span>
-            </a>
-          </li>
-          <li className={`nav-item has-sub open`} style={customStyle}>
-            <a
-              onClick={() => setSubOpen({ invoice: !subOpen.invoice })}
-              className="d-flex align-items-center"
-              href="#"
+          {menuItem.map((item, i) => (
+            <li
+              key={i}
+              className={`nav-item ${item.url === pathname ? 'active':''} ${
+                item.children?.length > 0 ? "has-sub open" : ""
+              }`}
+              style={item.children?.length > 0 ? customStyle : undefined}
             >
-              <FileText />
-              <span className="menu-title text-truncate" data-i18n="Invoice">
-                Invoice
-              </span>
-            </a>
-            <ul className="menu-content">
-              <li>
-                <a
-                  className="d-flex align-items-center"
-                  href="app-invoice-list.html"
+              <a
+                onClick={
+                  item.children?.length > 0
+                    ? () => setSubOpen({ invoice: !subOpen.invoice })
+                    : undefined
+                }
+                className="d-flex align-items-center"
+                href={item.url}
+              >
+                {item.icon}
+                <span
+                  className="menu-title text-truncate"
+                  data-i18n="Dashboards"
                 >
-                  <Circle />
-                  <span className="menu-item text-truncate" data-i18n="List">
-                    List
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a
-                  className="d-flex align-items-center"
-                  href="app-invoice-preview.html"
-                >
-                  <Circle />
-                  <span className="menu-item text-truncate" data-i18n="Preview">
-                    Preview
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a
-                  className="d-flex align-items-center"
-                  href="app-invoice-edit.html"
-                >
-                  <Circle />
-                  <span className="menu-item text-truncate" data-i18n="Edit">
-                    Edit
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a
-                  className="d-flex align-items-center"
-                  href="app-invoice-add.html"
-                >
-                  <Circle />
-                  <span className="menu-item text-truncate" data-i18n="Add">
-                    Add
-                  </span>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li className=" nav-item ">
-            <a className="d-flex align-items-center" href="app-kanban.html">
-              <Grid />
-              <span className="menu-title text-truncate" data-i18n="Kanban">
-                Kanban
-              </span>
-            </a>
-          </li>
-          <li className=" nav-item ">
-            <a className="d-flex align-items-center" href="app-kanban.html">
-              <Grid />
-              <span className="menu-title text-truncate" data-i18n="Kanban">
-                Kanban
-              </span>
-            </a>
-          </li>
+                  {item.title}
+                </span>
+              </a>
+              {item.children?.length > 0 && (
+                <ul className="menu-content">
+                  {item.children?.map((children, index) => (
+                    <li key={index}>
+                      <a
+                        className="d-flex align-items-center"
+                        href={children.url}
+                      >
+                        {children.icon}
+                        <span
+                          className="menu-item text-truncate"
+                          data-i18n="List"
+                        >
+                          {children.title}
+                        </span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))}
         </ul>
       </div>
     </div>

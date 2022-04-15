@@ -2,24 +2,38 @@ import React, { useEffect, useState } from "react";
 import AdminNav from "../AdminNav/AdminNav";
 import AdminSidebar from "../AdminSidebar/AdminSidebar";
 
-const AdminLayout = () => {
+const AdminLayout = ({children}) => {
   const [toggle, setToggle] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(1200)
+  const [windowWidth, setWindowWidth] = useState(1200);
   useEffect(() => {
     window.addEventListener("resize", () => {
-       const width = window.innerWidth;
-       setWindowWidth(width)
+      const width = window.innerWidth;
+      setWindowWidth(width);
     });
   }, []);
   return (
     <>
       <div
-        className={`pace-done vertical-layout vertical-menu-modern navbar-floating footer-static ${windowWidth >= 1200 ? 'menu-expanded': ''}  ${
-          toggle ? "menu-open menu-expanded" : " menu-hide"
-        }`}
+        className={`pace-done vertical-layout vertical-menu-modern navbar-floating footer-static ${
+          windowWidth >= 1200 ? "menu-expanded" : ""
+        }  ${toggle ? "menu-open menu-expanded" : " menu-hide"}`}
       >
         <AdminNav toggle={toggle} setToggle={setToggle} />
         <AdminSidebar toggle={toggle} setToggle={setToggle} />
+
+        <div className="app-content content ">
+          <div className="content-overlay"></div>
+          <div className="header-navbar-shadow"></div>
+          <div className="content-wrapper container-xxl p-0">
+            <div className="content-header row"></div>
+            <div className="content-body">
+              {/* Dashboard Ecommerce Starts */}
+              <section id="dashboard-ecommerce">
+               {children}
+              </section>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
