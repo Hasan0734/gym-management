@@ -4,7 +4,10 @@ import { Disc, X } from "react-feather";
 import { menuItem } from "./sideMenu";
 
 const AdminSidebar = ({ toggle, setToggle }) => {
-  const [subOpen, setSubOpen] = useState({ invoice: false });
+  const [subOpen, setSubOpen] = useState({});
+   
+ 
+  console.log(subOpen)
 
   useEffect(() => {
     // const closeSidebar = (e) => {
@@ -22,7 +25,7 @@ const AdminSidebar = ({ toggle, setToggle }) => {
   const customStyle = {
     overflow: "hidden",
     transition: "all 0.3s",
-    height: `${subOpen.invoice ? "212px" : "43px"}`,
+    height: `${subOpen ? "auto" : "43px"}`,
   };
 
   return (
@@ -144,17 +147,18 @@ const AdminSidebar = ({ toggle, setToggle }) => {
           {menuItem.map((item, i) => (
             <li
               key={i}
-              className={`nav-item ${item.url === pathname ? 'active':''} ${
+              className={`nav-item} ${
                 item.children?.length > 0 ? "has-sub open" : ""
               }`}
               style={item.children?.length > 0 ? customStyle : undefined}
             >
               <a
-                onClick={
-                  item.children?.length > 0
-                    ? () => setSubOpen({ invoice: !subOpen.invoice })
-                    : undefined
-                }
+                onClick={ () => {
+                 
+                 
+                }}
+
+               
                 className="d-flex align-items-center"
                 href={item.url}
               >

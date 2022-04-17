@@ -5,12 +5,15 @@ import {
   Calendar,
   CheckSquare,
   CreditCard,
+  HelpCircle,
   Mail,
   Menu,
   MessageSquare,
+  Power,
   Search,
   Settings,
   ShoppingCart,
+  User,
   X
 } from "react-feather";
 import avater from "/public/img/avatar-s-11.jpg";
@@ -131,7 +134,8 @@ const AdminNav = ({ toggle, setToggle }) => {
                 aria-labelledby="dropdown-flag"
               >
                 <a className="dropdown-item" href="#" data-language="en">
-                  <i className="flag-icon flag-icon-us" /> English
+                  <i className="flag-icon flag-icon-us" /> 
+                  English
                 </a>
                 <a className="dropdown-item" href="#" data-language="fr">
                   <i className="flag-icon flag-icon-fr" /> French
@@ -577,34 +581,40 @@ const AdminNav = ({ toggle, setToggle }) => {
                 aria-labelledby="dropdown-user"
               >
                 <a className="dropdown-item" href="page-profile.html">
-                  <i className="me-50" data-feather="user" /> Profile
+                  <User className="me-50"/>
+                   Profile
                 </a>
                 <a className="dropdown-item" href="app-email.html">
-                  <i className="me-50" data-feather="mail" /> Inbox
+                  <Mail className="me-50"/>
+                  Inbox
                 </a>
                 <a className="dropdown-item" href="app-todo.html">
-                  <i className="me-50" data-feather="check-square" /> Task
+                  <CheckSquare className="me-50"/>
+                  Task
                 </a>
                 <a className="dropdown-item" href="app-chat.html">
-                  <i className="me-50" data-feather="message-square" /> Chats
+                  <MessageSquare className="me-50"/>
+                   Chats
                 </a>
                 <div className="dropdown-divider" />
                 <a
                   className="dropdown-item"
                   href="page-account-settings-account.html"
                 >
-                  <Settings />
+                  <Settings className="me-50" />
                   Settings
                 </a>
                 <a className="dropdown-item" href="page-pricing.html">
-                  <CreditCard />
+                  <CreditCard className="me-50" />
                   Pricing
                 </a>
                 <a className="dropdown-item" href="page-faq.html">
-                  <i className="me-50" data-feather="help-circle" /> FAQ
+                  <HelpCircle className="me-50"/>
+                   FAQ
                 </a>
                 <a className="dropdown-item" href="auth-login-cover.html">
-                  <i className="me-50" data-feather="power" /> Logout
+                  <Power className="me-50"/>
+                  Logout
                 </a>
               </div>
             </li>

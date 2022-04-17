@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import AdminNav from "../AdminNav/AdminNav";
 import AdminSidebar from "../AdminSidebar/AdminSidebar";
 
-const AdminLayout = ({children}) => {
+const AdminLayout = ({ children }) => {
   const [toggle, setToggle] = useState(false);
   const [windowWidth, setWindowWidth] = useState(1200);
   useEffect(() => {
@@ -25,14 +25,8 @@ const AdminLayout = ({children}) => {
           <div className="content-overlay"></div>
           <div className="header-navbar-shadow"></div>
           <div className="content-wrapper container-xxl p-0">
-            <div className="content-header row"></div>
-            <div className="content-body">
-              {/* Dashboard Ecommerce Starts */}
-              <section id="dashboard-ecommerce">
-               {children}
-              </section>
+            {children}
             </div>
-          </div>
         </div>
       </div>
     </>
